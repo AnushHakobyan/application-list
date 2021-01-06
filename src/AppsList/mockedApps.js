@@ -1,4 +1,4 @@
-export default [
+export const mockedApps = [
   {
     "id": "9b565b11-7311-5b5e-a699-97873dffb361",
     "name": "Voice Report",
@@ -159,3 +159,7 @@ export default [
     ]
   }
 ];
+
+export const mockedCategories = [
+  "Voice Analytics", "Reporting", "Optimization", "Productivity", "Management", "Channels", "Dialer"
+]
