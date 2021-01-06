@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 const AppTags = ({ tags }) => (
   <div className="tags">
     {tags.map(tag => (
-      <><span>{tag}</span> /</>
+      <span key={tag}>
+        <span>{tag}</span>
+        /
+      </span>
     ))}
   </div>
 );

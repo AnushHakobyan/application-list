@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { List, ListItem } from '../List';
 import AppDetails from '../AppDetails';
-import AppsService from './AppsService';
 
-const AppsList = () => {
-  const [apps, setApps] = useState([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const getApps = async () => {
-      const response = await AppsService.getApps();
-      setApps(response);
-      setLoading(false);
-    }
-    getApps();
-  }, []);
-
+const AppsList = ({ apps, loading }) => {
   return (
     loading
       ? <span>Loading...</span>
@@ -27,7 +15,6 @@ const AppsList = () => {
             </ListItem>
           ))}
         </List>
-
     )
   )
 }

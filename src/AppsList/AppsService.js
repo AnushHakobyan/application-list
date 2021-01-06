@@ -4,13 +4,15 @@ const mockApiCall = (mockedData) => new Promise(function(resolve) {
   setTimeout(() => resolve(mockedData), 500);
 });
 
+const processCategories = (categories) => categories.sort();
+
 export default {
-  getApps: () => {
-    const appsResponse = mockApiCall(mockedApps);
+  loadApps: async () => {
+    const appsResponse = await mockApiCall(mockedApps);
     return appsResponse;
   },
-  getCategories: () => {
-    const categoriesResponse = mockApiCall(mockedCategories);
-    return categoriesResponse;
+  loadCategories: async () => {
+    const categoriesResponse = await mockApiCall(mockedCategories);
+    return processCategories(categoriesResponse);
   }
 }
