@@ -1,12 +1,11 @@
 import React from 'react';
-import AppDetails from '../AppDetails/AppDetails';
 
-const ListItem = () => {
+const ListItem = ({ children }) => {
   return (
     <li>
       <div className="app-item">
         <div className="box-info">
-          <AppDetails />
+          {children}
         </div>
       </div>
     </li>

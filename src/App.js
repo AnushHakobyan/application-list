@@ -1,14 +1,11 @@
 import React from 'react';
-import ListItem from './List/ListItem';
-import List from './List/List'
+import AppsList from './AppsList';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <List>
-        <ListItem />
-      </List>
+      <AppsList />
     </div>
   );
 }
