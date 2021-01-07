@@ -17,7 +17,7 @@ const AppsListPagination = ({ selectedPage, selectPage, pagesCount }) => {
   };
 
   const onNextClickHandler = () => {
-    if (selectedPage <= pagesCount) {
+    if (selectedPage < pagesCount) {
       selectPage(selectedPage + 1);
     }
   };

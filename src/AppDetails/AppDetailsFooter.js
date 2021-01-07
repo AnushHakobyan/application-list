@@ -3,8 +3,13 @@ import React from 'react';
 const AppDetailsFooter = ({ subscriptions }) => (
   <div className="box-info--footer">
     <ul>
-      <li><span>Trial</span> <h3>Free<sup></sup></h3></li>
-      <li><span>Professional</span> <h3>35.00<sup>€</sup></h3></li>
+      {subscriptions.map(({ name, price }) => (
+        <li key={name}>
+          <span>{name}</span>
+          {' '}
+          <h3>{price  || 'free'}<sup>{price ? '€' : ''}</sup></h3>
+        </li>
+      ))}
     </ul>
   </div>
 );

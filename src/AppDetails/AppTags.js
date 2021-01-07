@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const AppTags = ({ tags }) => (
   <div className="tags">
-    {tags.map(tag => (
+    {tags.map((tag, index) => (
       <span key={tag}>
+        {index > 0 && '/'}
         <span>{tag}</span>
-        /
       </span>
     ))}
   </div>
