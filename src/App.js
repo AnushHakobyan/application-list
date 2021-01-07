@@ -60,13 +60,10 @@ function App() {
   })
 
   const filteredApps = useMemo(() => {
-    debugger;
     const filteredAppsByCategory = filter ? apps.filter(({categories}) => categories.includes(filter)) : apps;
-    debugger;
     const filteredBySearchApps = searchBy ? filteredAppsByCategory.filter(
       ({ name, description }) => name.toLowerCase().includes(searchBy) || description.toLowerCase().includes(searchBy)
     ) : filteredAppsByCategory;
-    debugger;
     return filteredBySearchApps;
   }, [filter, searchBy, apps]);
 
