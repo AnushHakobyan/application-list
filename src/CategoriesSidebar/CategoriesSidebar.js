@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import AppsService from '../AppsList/AppsService';
 
 
@@ -28,5 +29,9 @@ const CategoriesSidebar = ({ onClickHandler }) => {
     </nav>
   )
 }
+
+CategoriesSidebar.propTypes = {
+  onClickHandler: PropTypes.func.isRequired,
+};
 
 export default CategoriesSidebar;

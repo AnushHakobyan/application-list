@@ -7,7 +7,10 @@ const AppsListPagination = ({ selectedPage, selectPage, pagesCount }) => {
   const pages = useMemo(() => createPages(pagesCount), [pagesCount]);
 
   const onPageClickHandler = (e) => {
-    selectPage(+e.target.text);
+    const page = Number(e.currentTarget.textContent);
+    if (page !== selectedPage) {
+      selectPage(page);
+    }
   };
 
   const onPrevClickHandler = () => {

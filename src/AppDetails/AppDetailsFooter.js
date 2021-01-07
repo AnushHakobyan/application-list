@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { subscriptionShape } from '../utils/typeShapes';
 
 const AppDetailsFooter = ({ subscriptions }) => (
   <div className="box-info--footer">
@@ -13,5 +15,9 @@ const AppDetailsFooter = ({ subscriptions }) => (
     </ul>
   </div>
 );
+
+AppDetailsFooter.propTypes = {
+  subscriptions: PropTypes.arrayOf(subscriptionShape),
+};
 
 export default AppDetailsFooter;

@@ -1,6 +1,5 @@
-import { mockedApps, mockedCategories } from './mockedApps';
-
-const CENTS_FOR_EURO = 100;
+import { EURO_TO_CENTS } from '../utils/constants';
+import { mockedData, mockedCategories } from '../utils/mockedData';
 
 const mockApiCall = (mockedData) => new Promise(function(resolve) {
   setTimeout(() => resolve(mockedData), 500);
@@ -11,7 +10,7 @@ const processCategories = (categories) => categories.sort();
 const processApp = ({ subscriptions, ...app }) => {
   const processedSubscriptions = subscriptions.map(({ name, price }) => ({
     name,
-    price: (price / CENTS_FOR_EURO).toFixed(2),
+    price: Number((price / EURO_TO_CENTS).toFixed(2)),
   }));
   const orderWeight = subscriptions.reduce((weight, { price }) => {
     weight = weight + price;
@@ -24,10 +23,7 @@ const processApp = ({ subscriptions, ...app }) => {
   }
 }
 
-const appsComparator = (actual, next) => {
-  debugger;
-  return actual.orderWeight - next.orderWeight;
-}
+const appsComparator = (actual, next) => actual.orderWeight - next.orderWeight;
 
 const processApps = (apps) => {
   const processedApps = apps.map(processApp);
@@ -36,7 +32,7 @@ const processApps = (apps) => {
 
 export default {
   loadApps: async () => {
-    const appsResponse = await mockApiCall(mockedApps);
+    const appsResponse = await mockApiCall(mockedData);
     return processApps(appsResponse);
   },
   loadCategories: async () => {

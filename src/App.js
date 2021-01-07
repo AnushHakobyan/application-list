@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useMemo } from 'react';
+import React, { useEffect, useReducer, useMemo, useState } from 'react';
 import AppsList from './AppsList';
 import CategoriesSidebar from './CategoriesSidebar';
 import AppsService from './AppsList/AppsService';
@@ -36,6 +36,7 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [selectedPage, setSelectedPage] = useState(1);
   const { apps, loading, filter, searchBy } = state;
 
   useEffect(() => {
@@ -60,10 +61,11 @@ function App() {
   })
 
   const filteredApps = useMemo(() => {
-    const filteredAppsByCategory = filter ? apps.filter(({categories}) => categories.includes(filter)) : apps;
+    const filteredAppsByCategory = filter ? apps.filter(({ categories }) => categories.includes(filter)) : apps;
     const filteredBySearchApps = searchBy ? filteredAppsByCategory.filter(
       ({ name, description }) => name.toLowerCase().includes(searchBy) || description.toLowerCase().includes(searchBy)
     ) : filteredAppsByCategory;
+    setSelectedPage(1);
     return filteredBySearchApps;
   }, [filter, searchBy, apps]);
 
@@ -72,7 +74,7 @@ function App() {
       <CategoriesSidebar onClickHandler={filterByCategory} />
       <section className="apps-list">
         <AppSearchBy onChangeHandler={search} />
-        <AppsList apps={filteredApps} loading={loading} />
+        <AppsList apps={filteredApps} loading={loading} page={selectedPage} setPage={setSelectedPage} />
       </section>
     </div>
   );
