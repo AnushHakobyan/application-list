@@ -5,7 +5,7 @@ const AppTags = ({ tags }) => (
   <div className="tags">
     {tags.map((tag, index) => (
       <span key={tag}>
-        {index > 0 && '/'}
+        {index > 0 && <span data-testid="separator">'/'</span>}
         <span>{tag}</span>
       </span>
     ))}

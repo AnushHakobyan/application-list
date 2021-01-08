@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppTags Component should render tags and slashes between them 1`] = `
+<div
+  className="tags"
+>
+  <span
+    key="tag 1"
+  >
+    <span>
+      tag 1
+    </span>
+  </span>
+  <span
+    key="tag 2"
+  >
+    <span
+      data-testid="separator"
+    >
+      '/'
+    </span>
+    <span>
+      tag 2
+    </span>
+  </span>
+  <span
+    key="tag 3"
+  >
+    <span
+      data-testid="separator"
+    >
+      '/'
+    </span>
+    <span>
+      tag 3
+    </span>
+  </span>
+</div>
+`;
