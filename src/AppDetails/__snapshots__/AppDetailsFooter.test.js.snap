@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppDetailsFooter should render subscriptions correctly 1`] = `
+<div
+  className="box-info--footer"
+>
+  <ul>
+    <li
+      data-testid="trial"
+      key="trial"
+    >
+      <span>
+        trial
+      </span>
+       
+      <h3>
+        free
+        <sup />
+      </h3>
+    </li>
+    <li
+      data-testid="starter"
+      key="starter"
+    >
+      <span>
+        starter
+      </span>
+       
+      <h3>
+        100
+        <sup>
+          €
+        </sup>
+      </h3>
+    </li>
+    <li
+      data-testid="advanced"
+      key="advanced"
+    >
+      <span>
+        advanced
+      </span>
+       
+      <h3>
+        200
+        <sup>
+          €
+        </sup>
+      </h3>
+    </li>
+  </ul>
+</div>
+`;

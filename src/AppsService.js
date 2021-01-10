@@ -1,8 +1,8 @@
-import { EURO_TO_CENTS } from '../utils/constants';
-import { mockedData, mockedCategories } from '../utils/mockedData';
+import { EURO_TO_CENTS } from './utils/constants';
+import { mockedData, mockedCategories } from './utils/mockedData';
 
 const mockApiCall = (mockedData) => new Promise(function(resolve) {
-  setTimeout(() => resolve(mockedData), 500);
+  setTimeout(() => resolve(mockedData), 1000);
 });
 
 const processCategories = (categories) => categories.sort();
@@ -30,13 +30,17 @@ const processApps = (apps) => {
   return processedApps.sort(appsComparator);
 }
 
+const loadApps = async () => {
+  const appsResponse = await mockApiCall(mockedData);
+  return processApps(appsResponse);
+};
+
+const loadCategories = async () => {
+  const categoriesResponse = await mockApiCall(mockedCategories);
+  return processCategories(categoriesResponse);
+}
+
 export default {
-  loadApps: async () => {
-    const appsResponse = await mockApiCall(mockedData);
-    return processApps(appsResponse);
-  },
-  loadCategories: async () => {
-    const categoriesResponse = await mockApiCall(mockedCategories);
-    return processCategories(categoriesResponse);
-  }
+  loadApps,
+  loadCategories,
 }

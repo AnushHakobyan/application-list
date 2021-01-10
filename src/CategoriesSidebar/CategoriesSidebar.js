@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AppsService from '../AppsList/AppsService';
+import AppsService from '../AppsService';
 
 
-const CategoriesSidebar = ({ onClickHandler }) => {
+const CategoriesSidebar = ({ onClickHandler, selectedCategory }) => {
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
+  // useEffect is not imported above, as it is not mockable in that way.
+  React.useEffect(() => {
     const getCategories = async () => {
       const categories = await AppsService.loadCategories();
       setCategories(categories);
@@ -18,10 +19,19 @@ const CategoriesSidebar = ({ onClickHandler }) => {
     <nav className="nav-categories">
       <h2>Categories</h2>
       <ul className="nav-menu">
-        <li onClick={() => onClickHandler('')}><a href="#">Show All</a></li>
+        <li
+          className={selectedCategory === '' ? 'active' : ''}
+          onClick={() => onClickHandler('')}
+        >
+          <a href="#">Show All</a>
+        </li>
         {
           categories.map((category) => (
-            <li key={category} /*className="active"*/ onClick={() => onClickHandler(category)}>
+            <li
+              key={category}
+              className={selectedCategory === category ? 'active' : ''}
+              onClick={() => onClickHandler(category)}
+            >
               <a href="#">{category}</a></li>
           ))
         }

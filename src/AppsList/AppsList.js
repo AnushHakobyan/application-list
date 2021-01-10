@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { APPS_PER_PAGE } from '../utils/constants';
 import { appShape } from '../utils/typeShapes';
 import { List, ListItem } from '../List';
+import Loading from '../Loader';
 import AppDetails from '../AppDetails';
 import AppsListPagination from './AppsListPagination';
 
@@ -13,7 +14,7 @@ const AppsList = ({
   const appsPerPage = apps.slice(startIndex, startIndex + APPS_PER_PAGE);
   return (
     loading
-      ? <span>Loading...</span>
+      ? <Loading />
       : (
         <>
           <List>

@@ -250,3 +250,34 @@ input:hover, input:focus {
   color: var(--white);
   pointer-events: none;
 }
+
+.loader-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  pointer-events: none;
+  border: 6px solid #ebebeb/*var(--gray)*/;
+  border-radius: 50%;
+  border-top: 6px solid var(--teal);
+  width: 30px;
+  height: 30px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loader {
+    animation: loader-spin infinite 3s linear;
+  }
+}
+
+@keyframes loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

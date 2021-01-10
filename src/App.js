@@ -1,14 +1,14 @@
-import React, { useEffect, useReducer, useMemo, useState } from 'react';
+import React, { useReducer, useMemo } from 'react';
 import AppsList from './AppsList';
 import CategoriesSidebar from './CategoriesSidebar';
-import AppsService from './AppsList/AppsService';
+import AppsService from './AppsService';
 import AppSearchBy from './AppsList/AppSearchBy';
-import './App.css';
 
 const initialState = {
   apps: [],
   loading: true,
   filter: '',
+  selectedPage: 1,
 };
 
 function reducer(state, action) {
@@ -29,6 +29,11 @@ function reducer(state, action) {
         ...state,
         searchBy: action.value.toLowerCase(),
       };
+    case 'selectPage':
+      return {
+        ...state,
+        selectedPage: action.value,
+      }
     default:
       return state;
   }
@@ -36,10 +41,9 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [selectedPage, setSelectedPage] = useState(1);
-  const { apps, loading, filter, searchBy } = state;
+  const { apps, loading, filter, searchBy, selectedPage } = state;
 
-  useEffect(() => {
+  React.useEffect(() => {
     const getApps = async () => {
       const response = await AppsService.loadApps();
       dispatch({
@@ -60,21 +64,26 @@ function App() {
     value: keyword,
   })
 
+  const selectPage = (page) => dispatch({
+    type: 'selectPage',
+    value: page,
+  })
+
   const filteredApps = useMemo(() => {
     const filteredAppsByCategory = filter ? apps.filter(({ categories }) => categories.includes(filter)) : apps;
     const filteredBySearchApps = searchBy ? filteredAppsByCategory.filter(
       ({ name, description }) => name.toLowerCase().includes(searchBy) || description.toLowerCase().includes(searchBy)
     ) : filteredAppsByCategory;
-    setSelectedPage(1);
+    selectPage(1);
     return filteredBySearchApps;
   }, [filter, searchBy, apps]);
 
   return (
     <div className="flex-container">
-      <CategoriesSidebar onClickHandler={filterByCategory} />
+      <CategoriesSidebar onClickHandler={filterByCategory} selectedCategory={filter} />
       <section className="apps-list">
         <AppSearchBy onChangeHandler={search} />
-        <AppsList apps={filteredApps} loading={loading} page={selectedPage} setPage={setSelectedPage} />
+        <AppsList apps={filteredApps} loading={loading} page={selectedPage} setPage={selectPage} />
       </section>
     </div>
   );
