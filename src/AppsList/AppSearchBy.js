@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 const debounce = (callback, wait) => {
   let timerId;
   return (...args) => {
-    debugger;
     clearTimeout(timerId);
     timerId = setTimeout(() => callback(...args), wait);
   }
@@ -13,8 +12,8 @@ const debounce = (callback, wait) => {
 const AppSearchBy = ({ onChangeHandler }) => {
   const [value, setValue] = useState('');
   const handleChange = ({ target: { value } }) => {
+    setValue(value);
     const debouncedChange = debounce((value) => {
-      setValue(value);
       onChangeHandler(value);
     }, 200);
     debouncedChange(value);

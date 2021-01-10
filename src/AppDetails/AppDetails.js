@@ -6,12 +6,10 @@ import AppDetailsFooter from './AppDetailsFooter';
 const AppDetails = ({
   name, description, categories, subscriptions,
 }) => (
-  <div className="app-item">
-    <div className="box-info">
-      <AppDetailsContent name={name} description={description} categories={categories} />
-      <AppDetailsFooter subscriptions={subscriptions} />
-    </div>
-  </div>
+  <>
+    <AppDetailsContent name={name} description={description} categories={categories} />
+    <AppDetailsFooter subscriptions={subscriptions} />
+  </>
 );
 
 AppDetails.propTypes = appTypeObject;

@@ -1,5 +1,4 @@
 import AppsService from './AppsService';
-// import * as mockData from './utils/mockedData';
 
 jest.mock('./utils/mockedData', () => ({
   mockedData: [{
@@ -54,7 +53,7 @@ describe ('AppsService module', () => {
     it ('response body should be processed correctly', () => {
       expect(response[0].id).toBe('2');
       expect(response[1].orderWeight).toBe(4500);
-      expect(response[1].subscriptions[1].price).toBe(35.00);
+      expect(response[1].subscriptions[1].price).toBe('35.00');
     })
   })
   describe('loadCategories simulates api call to get categories list', () => {

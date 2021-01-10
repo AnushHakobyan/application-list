@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { EURO_TO_CENTS } from './utils/constants';
 import { mockedData, mockedCategories } from './utils/mockedData';
 
@@ -10,10 +11,10 @@ const processCategories = (categories) => categories.sort();
 const processApp = ({ subscriptions, ...app }) => {
   const processedSubscriptions = subscriptions.map(({ name, price }) => ({
     name,
-    price: Number((price / EURO_TO_CENTS).toFixed(2)),
+    price: (price / EURO_TO_CENTS).toFixed(2),
   }));
   const orderWeight = subscriptions.reduce((weight, { price }) => {
-    weight = weight + price;
+    weight = weight + Number(price);
     return weight;
   }, 0);
   return {

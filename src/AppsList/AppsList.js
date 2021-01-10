@@ -10,26 +10,30 @@ import AppsListPagination from './AppsListPagination';
 const AppsList = ({
   apps, loading, page, setPage,
 }) => {
+
+  if (loading) return <Loading />;
+
+  if (apps.length === 0) {
+    return <div className="empty">No apps are found.</div>
+  }
+
   const startIndex = (page - 1) * APPS_PER_PAGE;
   const appsPerPage = apps.slice(startIndex, startIndex + APPS_PER_PAGE);
+
   return (
-    loading
-      ? <Loading />
-      : (
-        <>
-          <List>
-            {appsPerPage.map((app) => (
-              <ListItem key={app.id}>
-                <AppDetails {...app} />
-              </ListItem>
-            ))}
-          </List>
-          <AppsListPagination
-            selectedPage={page}
-            selectPage={setPage}
-            pagesCount={Math.ceil(apps.length / APPS_PER_PAGE)} />
-        </>
-    )
+    <>
+      <List>
+        {appsPerPage.map((app) => (
+          <ListItem key={app.id}>
+            <AppDetails {...app} />
+          </ListItem>
+        ))}
+      </List>
+      <AppsListPagination
+        selectedPage={page}
+        selectPage={setPage}
+        pagesCount={Math.ceil(apps.length / APPS_PER_PAGE)} />
+    </>
   );
 }
 

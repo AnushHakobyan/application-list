@@ -17,7 +17,7 @@ exports[`AppTags Component should render tags and slashes between them 1`] = `
     <span
       data-testid="separator"
     >
-      '/'
+      /
     </span>
     <span>
       tag 2
@@ -29,7 +29,7 @@ exports[`AppTags Component should render tags and slashes between them 1`] = `
     <span
       data-testid="separator"
     >
-      '/'
+      /
     </span>
     <span>
       tag 3
