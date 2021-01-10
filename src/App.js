@@ -8,6 +8,7 @@ const initialState = {
   apps: [],
   loading: true,
   filter: '',
+  searchBy: '',
   selectedPage: 1,
 };
 
@@ -70,10 +71,15 @@ function App() {
   })
 
   const filteredApps = useMemo(() => {
-    const filteredAppsByCategory = filter ? apps.filter(({ categories }) => categories.includes(filter)) : apps;
-    const filteredBySearchApps = searchBy ? filteredAppsByCategory.filter(
-      ({ name, description }) => name.toLowerCase().includes(searchBy) || description.toLowerCase().includes(searchBy)
-    ) : filteredAppsByCategory;
+    const filteredAppsByCategory = filter
+      ? apps.filter(({ categories }) => categories.includes(filter))
+      : apps;
+    const filteredBySearchApps = searchBy
+      ? filteredAppsByCategory.filter(
+        ({ name, description }) => (
+          name.toLowerCase().includes(searchBy) || description.toLowerCase().includes(searchBy)
+        ))
+      : filteredAppsByCategory;
     selectPage(1);
     return filteredBySearchApps;
   }, [filter, searchBy, apps]);
@@ -83,7 +89,12 @@ function App() {
       <CategoriesSidebar onClickHandler={filterByCategory} selectedCategory={filter} />
       <section className="apps-list">
         <AppSearchBy onChangeHandler={search} />
-        <AppsList apps={filteredApps} loading={loading} page={selectedPage} setPage={selectPage} />
+        <AppsList
+          apps={filteredApps}
+          loading={loading}
+          page={selectedPage}
+          setPage={selectPage}
+        />
       </section>
     </div>
   );

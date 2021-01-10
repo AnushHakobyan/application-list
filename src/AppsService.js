@@ -11,7 +11,7 @@ const processCategories = (categories) => categories.sort();
 const processApp = ({ subscriptions, ...app }) => {
   const processedSubscriptions = subscriptions.map(({ name, price }) => ({
     name,
-    price: (price / EURO_TO_CENTS).toFixed(2),
+    price: price === 0 ? 0 : (price / EURO_TO_CENTS).toFixed(2),
   }));
   const orderWeight = subscriptions.reduce((weight, { price }) => {
     weight = weight + Number(price);
